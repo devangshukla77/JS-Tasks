@@ -1,17 +1,21 @@
-function Depth(arr) {
-    if (!Array.isArray(arr)) {
+var arr = [[[[[[[[[]]]]]]]]];
+
+function isArray(arr) {
+    return Array.isArray(arr);
+}
+
+function depth(arr) {
+    if (!isArray(arr)) {
         return 0;
     }
 
-    var count = 0;
-    for (var i = 0; i < arr.length; i++) {
-        var temp = 1 + Depth(arr[i]);
-        if (temp > count) {
-            count = temp;
-        }
+    let maxDepth = 0;
+
+    for (let i = 0; i < arr.length; i++) {
+        maxDepth = Math.max(maxDepth, depth(arr[i]));
     }
-    return count;
+
+    return 1 + maxDepth;
 }
 
-var arr = [[[[[[[[[]]]]]]]]];
-console.log(Depth(arr));
+console.log(depth(arr));
